@@ -35,6 +35,10 @@ export class AppComponent {
         this.canvasElem.width = this.canvasRef.nativeElement.parentNode.clientWidth;
         this.canvasElem.height = this.canvasRef.nativeElement.parentNode.clientHeight;
         this.canvasContext = this.canvasElem.getContext('2d');
+
+    }
+    // tslint:disable-next-line:use-life-cycle-interface
+    ngAfterViewInit(): void {
         this.run();
     }
 
@@ -133,6 +137,7 @@ export class AppComponent {
     }
 
     runOptimization() {
+
         let proceed = true;
         let cursor = 0;
         while (proceed) {
@@ -150,13 +155,13 @@ export class AppComponent {
                 console.log('R: ' + this.R_calculated);
                 console.log('K: ' + this.K_calculated);
             }
-             this.draw(this.canvasContext);
+            this.draw(this.canvasContext);
         }
     }
 
     draw(ctx: CanvasRenderingContext2D) {
         ctx.fillStyle = 'white';
-        
+
         ctx.fillRect(0, 0, 1000, 1000);
 
         ctx.font = '12px Verdana';
@@ -194,7 +199,7 @@ export class AppComponent {
         for (let i = 0; i < this.graphMatrixComponent.nodes; i++) {
 
             // tslint:disable-next-line:max-line-length
-            ctx.fillText(i + '.  Ki: ' + this.K_vector[i].toFixed(2) + '  Ri: ' + this.R_initial[i].toFixed(2), rowPlacement, columnPlacement);
+            ctx.fillText(i + '.  Ki: ' + this.K_vector[i].toFixed(2) + '  Ri: ' + this.R_initial[i].toFixed(4), rowPlacement, columnPlacement);
             columnPlacement += 15;
         }
         columnPlacement += 15;
